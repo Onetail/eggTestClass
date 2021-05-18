@@ -1,7 +1,11 @@
 import { Application } from 'egg';
 
 export default (app: Application) => {
-  const { controller, router } = app;
+  const { controller, router, middleware } = app;
 
-  router.get('/', controller.home.index);
+  router.post(
+    '/account/signin',
+    middleware.validateParams.validateAccountPostBody,
+    controller.account.signIn,
+  );
 };
