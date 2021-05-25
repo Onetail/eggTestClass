@@ -10,6 +10,10 @@ const plugin: EggPlugin = {
     enable: true,
     package: 'egg-validate',
   },
+  sequelize: {
+    enable: true,
+    package: 'egg-sequelize',
+  },
 
   jwt: {
     enable: true,

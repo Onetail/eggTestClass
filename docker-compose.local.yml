@@ -1,0 +1,28 @@
+version: '3'
+
+services:
+  test-mysql:
+    image: mysql:5.7.22
+    container_name: test-mysql
+    command: mysqld --default-authentication-plugin=mysql_native_password --sql_mode=""
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_USER: root
+      MYSQL_DATABASE: test-dev
+      MYSQL_PASSWORD: root
+    restart: always
+    volumes:
+      - ./sql/test.sql:/docker-entrypoint-initdb.d/test.sql
+      # - ./data/mysql:/var/lib/mysql
+    security_opt:
+      - seccomp:unconfined
+    ports:
+      - '3330:3306'
+    networks:
+      - test
+volumes:
+  sql:
+    driver: local
+networks:
+  test:
+    driver: bridge
