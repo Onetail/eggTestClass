@@ -8,4 +8,26 @@ export default (app: Application) => {
     middleware.validateParams.validateAccountPostBody,
     controller.account.signIn,
   );
+
+  router.get(
+    '/user/:id',
+    middleware.validateUser.validateIdParams,
+    controller.user.getUserById,
+  );
+  router.post(
+    '/user/',
+    middleware.validateUser.validateUserPostBody,
+    controller.user.postUser,
+  );
+  router.patch(
+    '/user/:id',
+    middleware.validateUser.validateIdParams,
+    middleware.validateUser.validateUserPatchBody,
+    controller.user.patchUserById,
+  );
+  router.delete(
+    '/user/:id',
+    middleware.validateUser.validateIdParams,
+    controller.user.deleteUserById,
+  );
 };

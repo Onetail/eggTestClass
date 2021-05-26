@@ -3,9 +3,11 @@
 
 import 'egg';
 import ExportValidateParams from '../../../app/middleware/validateParams';
+import ExportValidateUser from '../../../app/middleware/validateUser';
 
 declare module 'egg' {
   interface IMiddleware {
     validateParams: typeof ExportValidateParams;
+    validateUser: typeof ExportValidateUser;
   }
 }
