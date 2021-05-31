@@ -57,4 +57,8 @@ export default class User extends Service {
 
     return result;
   }
+
+  async deleteAllUser() {
+    return await this.ctx.model.User.destroy({ where: {} });
+  }
 }

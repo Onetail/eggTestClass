@@ -9,10 +9,12 @@ type AutoInstanceType<
   T,
   U = T extends CanExportFunc ? T : T extends AnyFunc ? ReturnType<T> : T,
 > = U extends AnyClass ? InstanceType<U> : U;
+import ExportLevel from '../../../app/service/level';
 import ExportUser from '../../../app/service/user';
 
 declare module 'egg' {
   interface IService {
+    level: AutoInstanceType<typeof ExportLevel>;
     user: AutoInstanceType<typeof ExportUser>;
   }
 }

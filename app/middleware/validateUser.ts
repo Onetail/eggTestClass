@@ -5,10 +5,11 @@ export async function validateIdParams(
   next: () => Promise<any>,
 ): Promise<any> {
   try {
+    ctx.params.id = parseInt(ctx.params.id);
     ctx.validate(
       {
         id: {
-          type: 'string',
+          type: 'integer',
         },
       },
       ctx.params,
@@ -16,7 +17,7 @@ export async function validateIdParams(
 
     await next();
   } catch (e) {
-    throw e;
+    throw { status: 400, message: e };
   }
 }
 
@@ -45,7 +46,7 @@ export async function validateUserPostBody(
 
     await next();
   } catch (e) {
-    throw e;
+    throw { status: 400, message: e };
   }
 }
 
@@ -68,6 +69,6 @@ export async function validateUserPatchBody(
 
     await next();
   } catch (e) {
-    throw e;
+    throw { status: 400, message: e };
   }
 }
