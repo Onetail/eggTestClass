@@ -20,6 +20,16 @@ services:
       - '3330:3306'
     networks:
       - test
+  storm-redis:
+    container_name: test-redis
+    image: redis:5
+    command: redis-server --appendonly yes
+    ports:
+      - '6390:6379'
+    volumes:
+      - ./data/redis_data:/data
+    networks:
+      - test
 volumes:
   sql:
     driver: local
