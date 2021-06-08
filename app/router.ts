@@ -9,11 +9,8 @@ export default (app: Application) => {
     controller.account.signIn,
   );
 
-  router.get(
-    '/user/:id',
-    middleware.validateUser.validateIdParams,
-    controller.user.getUserById,
-  );
+  router.get('/user/totalCount/query', controller.user.getUserCount);
+  router.get('/user/totalCount/cache', controller.user.getUserCountUseCache);
   router.post(
     '/user/',
     middleware.validateUser.validateUserPostBody,

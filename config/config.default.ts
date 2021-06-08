@@ -1,4 +1,5 @@
 import { EggAppConfig, EggAppInfo, PowerPartial } from 'egg';
+import * as path from 'path';
 
 export default (appInfo: EggAppInfo) => {
   const config = {} as PowerPartial<EggAppConfig>;
@@ -18,8 +19,31 @@ export default (appInfo: EggAppInfo) => {
     domainWhiteList: ['http://localhost:7001'],
   };
 
+  config.static = {
+    prefix: '/',
+    dir: [
+      path.join(appInfo.baseDir, 'app/public'),
+      {
+        prefix: '/coverage',
+        dir: path.join(appInfo.baseDir, 'coverage/lcov-report'),
+      },
+    ],
+    dynamic: true,
+    preload: false,
+    maxAge: 31536000,
+    buffer: true, // in prod env, false in other envs
+  };
+
   config.jwt = {
     secret: '123456',
+  };
+
+  config.redisSet = {
+    INCR: 1,
+    DECR: 1,
+    keys: {
+      userCount: 'userCount',
+    },
   };
 
   // add your special config in here

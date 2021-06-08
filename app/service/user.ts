@@ -3,10 +3,10 @@ import { Service } from 'egg';
 const UserAttributes = ['id', 'email', 'createdAt'];
 const LevelAttributes = ['name'];
 export default class User extends Service {
-  /**
-   * sayHi to you
-   * @param name - your name
-   */
+  public async countUserAll() {
+    return await this.ctx.model.User.count();
+  }
+
   public async findOneByUserId(id: number) {
     return await this.ctx.model.User.findOne({
       attributes: UserAttributes,

@@ -1,6 +1,25 @@
 import { Controller } from 'egg';
 
 export default class UserController extends Controller {
+  public async getUserCount() {
+    const { ctx } = this;
+    ctx.body = { body: await ctx.service.user.countUserAll() };
+  }
+  public async getUserCountUseCache() {
+    const { ctx } = this;
+    const userCount = +(await this.app.redis.get(
+      `${this.app.config.redisSet.keys.userCount}`,
+    ));
+    if (!userCount) {
+      await this.app.redis.set(
+        `${this.app.config.redisSet.keys.userCount}`,
+        await ctx.service.user.countUserAll(),
+      );
+    }
+
+    ctx.body = { body: userCount };
+  }
+
   public async getUserById() {
     const { ctx } = this;
     const { id } = ctx.params;
