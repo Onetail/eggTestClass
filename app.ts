@@ -28,14 +28,14 @@ export default class FooBoot implements IBoot {
     await this.app.redis.flushall();
     const ctx = await this.app.createAnonymousContext();
 
-    for (let i = 0; i < 10000; i++) {
-      await ctx.service.user.createNew({
-        email: `test${i}@gmail.com`,
-        nickname: `test${i}`,
-        password: '123456',
-        levelId: 1,
-      });
-    }
+    // for (let i = 0; i < 10000; i++) {
+    //   await ctx.service.user.createNew({
+    //     email: `test${i}@gmail.com`,
+    //     nickname: `test${i}`,
+    //     password: '123456',
+    //     levelId: 1,
+    //   });
+    // }
     const userCount = await ctx.service.user.countUserAll();
     await this.app.redis.set(
       `${this.app.config.redisSet.keys.userCount}`,

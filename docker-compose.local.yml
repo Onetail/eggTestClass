@@ -20,7 +20,7 @@ services:
       - '3330:3306'
     networks:
       - test
-  storm-redis:
+  test-redis:
     container_name: test-redis
     image: redis:5
     command: redis-server --appendonly yes

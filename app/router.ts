@@ -2,6 +2,7 @@ import { Application } from 'egg';
 
 export default (app: Application) => {
   const { controller, router, middleware } = app;
+  router.get('/account/signin/count', controller.account.signInCount);
 
   router.post(
     '/account/signin',
