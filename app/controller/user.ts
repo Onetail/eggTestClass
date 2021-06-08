@@ -6,18 +6,20 @@ export default class UserController extends Controller {
     ctx.body = { body: await ctx.service.user.countUserAll() };
   }
   public async getUserCountUseCache() {
-    const { ctx } = this;
-    const userCount = +(await this.app.redis.get(
+    const { ctx, app } = this;
+    let result;
+    const userCount: string | null = await app.redis.get(
       `${this.app.config.redisSet.keys.userCount}`,
-    ));
+    );
+
     if (!userCount) {
-      await this.app.redis.set(
-        `${this.app.config.redisSet.keys.userCount}`,
-        await ctx.service.user.countUserAll(),
-      );
+      result = await ctx.service.user.countUserAll();
+      await app.redis.set(`${this.app.config.redisSet.keys.userCount}`, result);
+    } else {
+      result = +userCount;
     }
 
-    ctx.body = { body: userCount };
+    ctx.body = { body: result };
   }
 
   public async getUserById() {
