@@ -11,9 +11,7 @@ services:
       MYSQL_DATABASE: test-dev
       MYSQL_PASSWORD: root
     restart: always
-    volumes:
-      - ./sql/test.sql:/docker-entrypoint-initdb.d/test.sql
-      # - ./data/mysql:/var/lib/mysql
+
     security_opt:
       - seccomp:unconfined
     ports:
