@@ -6,6 +6,10 @@ const plugin: EggPlugin = {
   //   enable: true,
   //   package: 'egg-view-nunjucks',
   // },
+  swaggerdoc: {
+    enable: true,
+    package: 'egg-swagger-doc',
+  },
   validate: {
     enable: true,
     package: 'egg-validate',

@@ -22,6 +22,6 @@ export async function validateAccountPostBody(
 
     await next();
   } catch (e) {
-    throw e;
+    throw { status: 400, message: e };
   }
 }
