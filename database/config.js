@@ -28,7 +28,7 @@ module.exports = {
   production: {
     username: process.env.MYSQL_USER || process.env.MYSQL_MASTER_USER,
     password: process.env.MYSQL_PASSWORD || process.env.MYSQL_MASTER_PASSWORD,
-    database: process.env.MYSQL_DATABASE || 'test',
+    database: process.env.MYSQL_DATABASE || 'test-dev',
     host: process.env.MYSQL_HOST || process.env.MYSQL_MASTER_HOST,
     dialect: 'mysql',
     timezone: '+08:00',

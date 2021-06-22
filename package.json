@@ -20,6 +20,7 @@
     }
   },
   "scripts": {
+    "start:prod": "run(){ EGG_SERVER_ENV=production egg-scripts start --sticky --env=prod --port=$1  --title=storm-server;}; run",
     "start": "egg-scripts start --daemon --title=egg-server-simple-egg-test",
     "stop": "egg-scripts stop --title=egg-server-simple-egg-test",
     "dev": "egg-bin dev",
