@@ -19,7 +19,7 @@ services:
         - jmeterVersion=5.2
     environment:
       - JMETER_TEST=test.jmx
-      - JMETER_WEBURL=http://waynechu.synology.me:7001
+      - JMETER_WEBURL=http://127.0.0.1:7001
       - JMETER_THREADS=100
       - JMETER_DURATION=60
       - JMETER_RAMPUP=10
